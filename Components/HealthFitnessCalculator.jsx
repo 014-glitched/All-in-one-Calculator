@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React, { useState } from 'react';
 
 
@@ -220,8 +221,341 @@ const HealthAndFitnessCalculator = () => {
             <button onclick={calculateIdealWeight} >Calculate Ideal Weight</button>
             <p id="iw-result">{iwResult}</p>
         </div>
+=======
+// import React from "react";
+
+// const HealthFitnessCalculator = () => {
+//   return (
+//     <div>
+//       <h2>Health & Fitness Calculator</h2>
+//       {/* Add your calculator logic here */}
+//     </div>
+//   );
+// };
+
+// export default HealthFitnessCalculator;
+
+
+
+//?
+
+import React, { useState } from 'react';
+
+const HealthFitnessCalculators = () => {
+  // State variables for BMI Calculator
+  const [bmiHeight, setBMIHeight] = useState('');
+  const [bmiWeight, setBMIWeight] = useState('');
+  const [bmiCategory, setBMICategory] = useState('');
+
+  // State variables for BMR Calculator
+  const [bmrGender, setBMRGender] = useState('male');
+  const [bmrAge, setBMRAge] = useState('');
+  const [bmrWeight, setBMRWeight] = useState('');
+  const [bmrHeight, setBMRHeight] = useState('');
+  const [bmrResult, setBMRResult] = useState('');
+
+  // State variables for Calorie Calculator
+  const [calGender, setCalGender] = useState('male');
+  const [calAge, setCalAge] = useState('');
+  const [calWeight, setCalWeight] = useState('');
+  const [calHeight, setCalHeight] = useState('');
+  const [calActivityLevel, setCalActivityLevel] = useState('sedentary');
+  const [caloriesResult, setCaloriesResult] = useState('');
+
+  // State variables for Body Fat Calculator
+  const [bodyFatGender, setBodyFatGender] = useState('male');
+  const [bodyFatAge, setBodyFatAge] = useState('');
+  const [bodyFatWaist, setBodyFatWaist] = useState('');
+  const [bodyFatNeck, setBodyFatNeck] = useState('');
+  const [bodyFatResult, setBodyFatResult] = useState('');
+
+  // State variables for Ideal Weight Calculator
+  const [idealWeightGender, setIdealWeightGender] = useState('male');
+  const [idealWeightHeight, setIdealWeightHeight] = useState('');
+  const [idealWeightAge, setIdealWeightAge] = useState('');
+  const [idealWeightFrameSize, setIdealWeightFrameSize] = useState('medium');
+  const [idealWeightResult, setIdealWeightResult] = useState('');
+
+  // BMI Calculator function
+  const calculateBMI = () => {
+    if (bmiHeight && bmiWeight) {
+      const bmi = (bmiWeight / (bmiHeight * bmiHeight)) * 10000;
+
+      let category = '';
+      if (bmi < 18.5) {
+        category = 'Underweight';
+      } else if (bmi >= 18.5 && bmi < 24.9) {
+        category = 'Normal weight';
+      } else if (bmi >= 24.9 && bmi < 29.9) {
+        category = 'Overweight';
+      } else {
+        category = 'Obese';
+      }
+
+      setBMICategory(category);
+    }
+  };
+
+  // BMR Calculator function
+  const calculateBMR = () => {
+    if (bmrGender && bmrAge && bmrWeight && bmrHeight) {
+      let bmrValue = 0;
+      if (bmrGender === 'male') {
+        bmrValue = 10 * bmrWeight + 6.25 * bmrHeight - 5 * bmrAge + 5;
+      } else {
+        bmrValue = 10 * bmrWeight + 6.25 * bmrHeight - 5 * bmrAge - 161;
+      }
+      setBMRResult(bmrValue.toFixed(2));
+    }
+  };
+
+  // Calorie Calculator function
+  const calculateCalories = () => {
+    if (calGender && calAge && calWeight && calHeight && calActivityLevel) {
+      let bmrValue = 0;
+      if (calGender === 'male') {
+        bmrValue = 10 * calWeight + 6.25 * calHeight - 5 * calAge + 5;
+      } else {
+        bmrValue = 10 * calWeight + 6.25 * calHeight - 5 * calAge - 161;
+      }
+
+      let calorieNeeds = 0;
+      switch (calActivityLevel) {
+        case 'sedentary':
+          calorieNeeds = bmrValue * 1.2;
+          break;
+        case 'lightlyActive':
+          calorieNeeds = bmrValue * 1.375;
+          break;
+        case 'moderatelyActive':
+          calorieNeeds = bmrValue * 1.55;
+          break;
+        case 'veryActive':
+          calorieNeeds = bmrValue * 1.725;
+          break;
+        case 'extraActive':
+          calorieNeeds = bmrValue * 1.9;
+          break;
+        default:
+          calorieNeeds = bmrValue * 1.2;
+      }
+
+      setCaloriesResult(calorieNeeds.toFixed(2));
+    }
+  };
+
+  // Body Fat Calculator function
+  const calculateBodyFat = () => {
+    if (bodyFatGender && bodyFatAge && bodyFatWaist && bodyFatNeck) {
+      let bodyFatPercent = 0;
+      if (bodyFatGender === 'male') {
+        const waistInches = parseFloat(bodyFatWaist) * 2.54;
+        const neckInches = parseFloat(bodyFatNeck) * 2.54;
+        const factor1 = (waistInches * 0.393) - (neckInches * 0.393);
+        const factor2 = (parseFloat(bodyFatAge) * 0.2);
+        bodyFatPercent = factor1 - factor2 - 16.2;
+      } else {
+        const waistInches = parseFloat(bodyFatWaist) * 2.54;
+        const neckInches = parseFloat(bodyFatNeck) * 2.54;
+        const factor1 = (waistInches * 0.393) - (neckInches * 0.393);
+        const factor2 = (parseFloat(bodyFatAge) * 0.2);
+        bodyFatPercent = factor1 - factor2 - 5.4;
+      }
+
+      setBodyFatResult(bodyFatPercent.toFixed(2));
+    }
+  };
+
+  // Ideal Weight Calculator function
+  const calculateIdealWeight = () => {
+    if (idealWeightGender && idealWeightHeight && idealWeightAge && idealWeightFrameSize) {
+      let idealWeightLow = 0;
+      let idealWeightHigh = 0;
+      const heightInches = parseFloat(idealWeightHeight) * 0.3937;
+
+      if (idealWeightGender === 'male') {
+        switch (idealWeightFrameSize) {
+          case 'small':
+            idealWeightLow = (heightInches - 60) * 2.3 + 52;
+            idealWeightHigh = (heightInches - 60) * 2.3 + 58;
+            break;
+          case 'medium':
+            idealWeightLow = (heightInches - 60) * 2.3 + 56;
+            idealWeightHigh = (heightInches - 60) * 2.3 + 62;
+            break;
+          case 'large':
+            idealWeightLow = (heightInches - 60) * 2.3 + 60;
+            idealWeightHigh = (heightInches - 60) * 2.3 + 66;
+            break;
+          default:
+            idealWeightLow = (heightInches - 60) * 2.3 + 56;
+            idealWeightHigh = (heightInches - 60) * 2.3 + 62;
+        }
+      } else {
+        switch (idealWeightFrameSize) {
+          case 'small':
+            idealWeightLow = (heightInches - 60) * 2.3 + 49;
+            idealWeightHigh = (heightInches - 60) * 2.3 + 55;
+            break;
+          case 'medium':
+            idealWeightLow = (heightInches - 60) * 2.3 + 53.5;
+            idealWeightHigh = (heightInches - 60) * 2.3 + 59.5;
+            break;
+          case 'large':
+            idealWeightLow = (heightInches - 60) * 2.3 + 58;
+            idealWeightHigh = (heightInches - 60) * 2.3 + 64;
+            break;
+          default:
+            idealWeightLow = (heightInches - 60) * 2.3 + 53.5;
+            idealWeightHigh = (heightInches - 60) * 2.3 + 59.5;
+        }
+      }
+
+      setIdealWeightResult(`${idealWeightLow.toFixed(2)} - ${idealWeightHigh.toFixed(2)} kg`);
+    }
+  };
+
+  return (
+    <div className="health-fitness-calculators">
+      {/* BMI Calculator */}
+      <div className="calculator">
+        <h2>BMI Calculator</h2>
+        <div>
+          <label>Height (cm):</label>
+          <input type="number" value={bmiHeight} onChange={(e) => setBMIHeight(e.target.value)} />
+        </div>
+        <div>
+          <label>Weight (kg):</label>
+          <input type="number" value={bmiWeight} onChange={(e) => setBMIWeight(e.target.value)} />
+        </div>
+        <button onClick={calculateBMI}>Calculate BMI</button>
+        {bmiCategory && <p>Your BMI category is: {bmiCategory}</p>}
+      </div>
+
+      {/* BMR Calculator */}
+      <div className="calculator">
+        <h2>BMR Calculator</h2>
+        <div>
+          <label>Gender:</label>
+          <select value={bmrGender} onChange={(e) => setBMRGender(e.target.value)}>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div>
+          <label>Age (years):</label>
+          <input type="number" value={bmrAge} onChange={(e) => setBMRAge(e.target.value)} />
+        </div>
+        <div>
+          <label>Weight (kg):</label>
+          <input type="number" value={bmrWeight} onChange={(e) => setBMRWeight(e.target.value)} />
+        </div>
+        <div>
+          <label>Height (cm):</label>
+          <input type="number" value={bmrHeight} onChange={(e) => setBMRHeight(e.target.value)} />
+        </div>
+        <button onClick={calculateBMR}>Calculate BMR</button>
+        {bmrResult && <p>Your Basal Metabolic Rate (BMR) is: {bmrResult} calories/day</p>}
+      </div>
+
+      {/* Calorie Calculator */}
+      <div className="calculator">
+        <h2>Calorie Calculator</h2>
+        <div>
+          <label>Gender:</label>
+          <select value={calGender} onChange={(e) => setCalGender(e.target.value)}>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div>
+          <label>Age (years):</label>
+          <input type="number" value={calAge} onChange={(e) => setCalAge(e.target.value)} />
+        </div>
+        <div>
+          <label>Weight (kg):</label>
+          <input type="number" value={calWeight} onChange={(e) => setCalWeight(e.target.value)} />
+        </div>
+        <div>
+          <label>Height (cm):</label>
+          <input type="number" value={calHeight} onChange={(e) => setCalHeight(e.target.value)} />
+        </div>
+        <div>
+          <label>Activity Level:</label>
+          <select value={calActivityLevel} onChange={(e) => setCalActivityLevel(e.target.value)}>
+            <option value="sedentary">Sedentary</option>
+            <option value="lightlyActive">Lightly Active</option>
+            <option value="moderatelyActive">Moderately Active</option>
+            <option value="veryActive">Very Active</option>
+            <option value="extraActive">Extra Active</option>
+          </select>
+        </div>
+        <button onClick={calculateCalories}>Calculate Daily Calories</button>
+        {caloriesResult && <p>Your daily calorie needs are: {caloriesResult} calories/day</p>}
+      </div>
+
+      {/* Body Fat Calculator */}
+      <div className="calculator">
+        <h2>Body Fat Calculator</h2>
+        <div>
+          <label>Gender:</label>
+          <select value={bodyFatGender} onChange={(e) => setBodyFatGender(e.target.value)}>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div>
+          <label>Age (years):</label>
+          <input type="number" value={bodyFatAge} onChange={(e) => setBodyFatAge(e.target.value)} />
+        </div>
+        <div>
+          <label>Waist (cm):</label>
+          <input type="number" value={bodyFatWaist} onChange={(e) => setBodyFatWaist(e.target.value)} />
+        </div>
+        <div>
+          <label>Neck (cm):</label>
+          <input type="number" value={bodyFatNeck} onChange={(e) => setBodyFatNeck(e.target.value)} />
+        </div>
+        <button onClick={calculateBodyFat}>Calculate Body Fat Percentage</button>
+        {bodyFatResult && <p>Your body fat percentage is: {bodyFatResult}%</p>}
+      </div>
+
+      {/* Ideal Weight Calculator */}
+      <div className="calculator">
+        <h2>Ideal Weight Calculator</h2>
+        <div>
+          <label>Gender:</label>
+          <select value={idealWeightGender} onChange={(e) => setIdealWeightGender(e.target.value)}>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div>
+          <label>Height (cm):</label>
+          <input type="number" value={idealWeightHeight} onChange={(e) => setIdealWeightHeight(e.target.value)} />
+        </div>
+        <div>
+          <label>Age (years):</label>
+          <input type="number" value={idealWeightAge} onChange={(e) => setIdealWeightAge(e.target.value)} />
+        </div>
+        <div>
+          <label>Frame Size:</label>
+          <select value={idealWeightFrameSize} onChange={(e) => setIdealWeightFrameSize(e.target.value)}>
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+          </select>
+        </div>
+        <button onClick={calculateIdealWeight}>Calculate Ideal Weight</button>
+        {idealWeightResult && <p>Your ideal weight range is: {idealWeightResult} kg</p>}
+      </div>
+>>>>>>> Stashed changes
     </div>
     );
   }
 
+<<<<<<< Updated upstream
 export default HealthAndFitnessCalculator;
+=======
+export default HealthFitnessCalculators;
+>>>>>>> Stashed changes

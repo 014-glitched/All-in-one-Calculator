@@ -18,6 +18,7 @@
 //??
 
 import React, { useState } from "react";
+import "./FinancialCalculator.css"; // Import your external CSS file
 
 const FinancialCalculator = () => {
   const [calculatorType, setCalculatorType] = useState("simpleInterest");
