@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import React, { useState } from 'react';
 
 
@@ -222,6 +223,8 @@ const HealthAndFitnessCalculator = () => {
             <p id="iw-result">{iwResult}</p>
         </div>
 =======
+=======
+>>>>>>> Stashed changes
 // import React from "react";
 
 // const HealthFitnessCalculator = () => {
@@ -431,6 +434,7 @@ const HealthFitnessCalculators = () => {
         <button onClick={calculateBMI}>Calculate BMI</button>
         {bmiCategory && <p>Your BMI category is: {bmiCategory}</p>}
       </div>
+<<<<<<< Updated upstream
 
       {/* BMR Calculator */}
       <div className="calculator">
@@ -557,5 +561,130 @@ const HealthFitnessCalculators = () => {
 <<<<<<< Updated upstream
 export default HealthAndFitnessCalculator;
 =======
+export default HealthFitnessCalculators;
+>>>>>>> Stashed changes
+=======
+
+      {/* BMR Calculator */}
+      <div className="calculator">
+        <h2>BMR Calculator</h2>
+        <div>
+          <label>Gender:</label>
+          <select value={bmrGender} onChange={(e) => setBMRGender(e.target.value)}>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div>
+          <label>Age (years):</label>
+          <input type="number" value={bmrAge} onChange={(e) => setBMRAge(e.target.value)} />
+        </div>
+        <div>
+          <label>Weight (kg):</label>
+          <input type="number" value={bmrWeight} onChange={(e) => setBMRWeight(e.target.value)} />
+        </div>
+        <div>
+          <label>Height (cm):</label>
+          <input type="number" value={bmrHeight} onChange={(e) => setBMRHeight(e.target.value)} />
+        </div>
+        <button onClick={calculateBMR}>Calculate BMR</button>
+        {bmrResult && <p>Your Basal Metabolic Rate (BMR) is: {bmrResult} calories/day</p>}
+      </div>
+
+      {/* Calorie Calculator */}
+      <div className="calculator">
+        <h2>Calorie Calculator</h2>
+        <div>
+          <label>Gender:</label>
+          <select value={calGender} onChange={(e) => setCalGender(e.target.value)}>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div>
+          <label>Age (years):</label>
+          <input type="number" value={calAge} onChange={(e) => setCalAge(e.target.value)} />
+        </div>
+        <div>
+          <label>Weight (kg):</label>
+          <input type="number" value={calWeight} onChange={(e) => setCalWeight(e.target.value)} />
+        </div>
+        <div>
+          <label>Height (cm):</label>
+          <input type="number" value={calHeight} onChange={(e) => setCalHeight(e.target.value)} />
+        </div>
+        <div>
+          <label>Activity Level:</label>
+          <select value={calActivityLevel} onChange={(e) => setCalActivityLevel(e.target.value)}>
+            <option value="sedentary">Sedentary</option>
+            <option value="lightlyActive">Lightly Active</option>
+            <option value="moderatelyActive">Moderately Active</option>
+            <option value="veryActive">Very Active</option>
+            <option value="extraActive">Extra Active</option>
+          </select>
+        </div>
+        <button onClick={calculateCalories}>Calculate Daily Calories</button>
+        {caloriesResult && <p>Your daily calorie needs are: {caloriesResult} calories/day</p>}
+      </div>
+
+      {/* Body Fat Calculator */}
+      <div className="calculator">
+        <h2>Body Fat Calculator</h2>
+        <div>
+          <label>Gender:</label>
+          <select value={bodyFatGender} onChange={(e) => setBodyFatGender(e.target.value)}>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div>
+          <label>Age (years):</label>
+          <input type="number" value={bodyFatAge} onChange={(e) => setBodyFatAge(e.target.value)} />
+        </div>
+        <div>
+          <label>Waist (cm):</label>
+          <input type="number" value={bodyFatWaist} onChange={(e) => setBodyFatWaist(e.target.value)} />
+        </div>
+        <div>
+          <label>Neck (cm):</label>
+          <input type="number" value={bodyFatNeck} onChange={(e) => setBodyFatNeck(e.target.value)} />
+        </div>
+        <button onClick={calculateBodyFat}>Calculate Body Fat Percentage</button>
+        {bodyFatResult && <p>Your body fat percentage is: {bodyFatResult}%</p>}
+      </div>
+
+      {/* Ideal Weight Calculator */}
+      <div className="calculator">
+        <h2>Ideal Weight Calculator</h2>
+        <div>
+          <label>Gender:</label>
+          <select value={idealWeightGender} onChange={(e) => setIdealWeightGender(e.target.value)}>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div>
+          <label>Height (cm):</label>
+          <input type="number" value={idealWeightHeight} onChange={(e) => setIdealWeightHeight(e.target.value)} />
+        </div>
+        <div>
+          <label>Age (years):</label>
+          <input type="number" value={idealWeightAge} onChange={(e) => setIdealWeightAge(e.target.value)} />
+        </div>
+        <div>
+          <label>Frame Size:</label>
+          <select value={idealWeightFrameSize} onChange={(e) => setIdealWeightFrameSize(e.target.value)}>
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+          </select>
+        </div>
+        <button onClick={calculateIdealWeight}>Calculate Ideal Weight</button>
+        {idealWeightResult && <p>Your ideal weight range is: {idealWeightResult} kg</p>}
+      </div>
+    </div>
+  );
+};
+
 export default HealthFitnessCalculators;
 >>>>>>> Stashed changes
